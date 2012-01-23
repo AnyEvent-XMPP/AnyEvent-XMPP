@@ -4,6 +4,7 @@ no warnings;
 use Encode;
 use Net::LibIDN qw/idn_prep_name idn_prep_resource idn_prep_node/;
 use AnyEvent::XMPP::Namespaces qw/xmpp_ns_maybe/;
+use Time::Local;
 require Exporter;
 our @EXPORT_OK = qw/resourceprep nodeprep prep_join_jid join_jid
                     split_jid split_uri stringprep_jid prep_bare_jid bare_jid
@@ -515,22 +516,14 @@ This function requires the L<POSIX> module.
 
 sub xmpp_datetime_as_timestamp {
    my ($string) = @_;
-   require POSIX;
    my ($s, $m, $h, $md, $mon, $year, $tz) = from_xmpp_datetime ($string);
+   return 0 unless defined $h;
 
-   my $otz = $ENV{TZ};
-   $ENV{TZ} = ($tz =~ /^([+-])(\d{2}):(\d{2})$/ ? "UTC $tz" : "");
-   POSIX::tzset ();
+   my $ts = timegm ($s, $m, $h, $md, $mon, $year);
 
-   my $ts = POSIX::mktime ($s, $m, $h, $md, $mon, $year);
-
-   if (defined $otz) {
-      $ENV{TZ} = $otz;
-   } else {
-      delete $ENV{TZ};
+   if ($tz =~ /^([+-])(\d{2}):(\d{2})$/) {
+      $ts += ($1 eq '-' ? -1 : 1) * ($2 * 3600 + $3 * 60)
    }
-
-   POSIX::tzset ();
 
    $ts
 }

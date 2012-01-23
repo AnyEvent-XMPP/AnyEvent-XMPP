@@ -1,12 +1,13 @@
 Revision history for AnyEvent::XMPP:
 
+!!!!!!!!!!!!!!!
+!!! NOTE: The version 0.6 of AnyEvent::XMPP will have an incompatible API!
+!!!!!!!!!!!!!!!
+
+0.52     Fri Aug 14 10:53:23 CEST 2009
+         - fixed a problem in xmpp_datetime_as_timestamp.
 
 0.51     Fri Aug 14 10:53:23 CEST 2009
-
-   !!!!!!!!!!!!!!!
-   !!! NOTE: The next version (0.6) of AnyEvent::XMPP will have an incompatible API!
-   !!!!!!!!!!!!!!!
-
          - small uncleanliness fixed in ::Parser.
          - thanks to mons@cpan.org, who found an incompat.
            between OE 1.1 and AnyEvent::XMPP (thanks to mons@cpan.org).
@@ -15,11 +16,6 @@ Revision history for AnyEvent::XMPP:
 
 
 0.5 Mon Mar 16 21:13:13 CET 2009
-
-   !!!!!!!!!!!!!!!
-   !!! NOTE: The next version of AnyEvent::XMPP will have an incompatible API!
-   !!!!!!!!!!!!!!!
-
          - added patch for Ext::Pubsub.
          - melo fixed some memleaks.
          - fixed another long time memleak in the parser.
