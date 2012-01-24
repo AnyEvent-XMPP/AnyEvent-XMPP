@@ -4,7 +4,7 @@ Revision history for AnyEvent::XMPP:
 !!! NOTE: The version 0.6 of AnyEvent::XMPP will have an incompatible API!
 !!!!!!!!!!!!!!!
 
-0.52     Fri Aug 14 10:53:23 CEST 2009
+0.52     Tue Jan 24 09:26:07 CET 2012
          - fixed a problem in xmpp_datetime_as_timestamp.
 
 0.51     Fri Aug 14 10:53:23 CEST 2009
