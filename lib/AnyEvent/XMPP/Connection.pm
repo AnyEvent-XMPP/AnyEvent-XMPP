@@ -208,9 +208,9 @@ sub new {
    $self->{parser} = new AnyEvent::XMPP::Parser;
    $self->{writer} = AnyEvent::XMPP::Writer->new (
       write_cb     => sub { $self->write_data ($_[0]) },
-      send_iq_cb   => sub { $self->event (send_iq_hook => @_); return },
-      send_msg_cb  => sub { $self->event (send_message_hook => @_); return },
-      send_pres_cb => sub { $self->event (send_presence_hook => @_); return },
+      send_iq_cb   => sub { my @cb; $self->event (send_iq_hook => (@_, \@cb)); return @cb },
+      send_msg_cb  => sub { my @cb; $self->event (send_message_hook => (@_, \@cb)); return @cb },
+      send_pres_cb => sub { my @cb; $self->event (send_presence_hook => (@_, \@cb)); return @cb },
    );
 
    $self->{parser}->set_stanza_cb (sub {
@@ -1209,7 +1209,7 @@ If the stanza was not handled an error iq will be generated.
 If the C<$result_cb> of a C<send_iq> operation somehow threw a exception
 or failed this event will be generated.
 
-=item send_iq_hook => $id, $type, $attrs
+=item send_iq_hook => $id, $type, $attrs, \@create_cb
 
 This event lets you add any desired number of additional create callbacks
 to a IQ stanza that is about to be sent.
@@ -1219,25 +1219,25 @@ L<AnyEvent::XMPP::Writer>. C<$attrs> is the hashref to the C<%attrs> hash that c
 be passed to C<send_iq> and also has the exact same semantics as described in
 the documentation of C<send_iq>.
 
-The return values of the event callbacks are interpreted as C<$create_cb> value as
-documented for C<send_iq>. (That means you can for example return a callback
-that fills the IQ).
+You can push values into C<create_cb> (as documented for C<send_iq>), for
+example a callback that fills the IQ.
 
 Example:
 
    # this appends a <test/> element to all outgoing IQs
    # and also a <test2/> element to all outgoing IQs
    $con->reg_cb (send_iq_hook => sub {
-      my ($con, $id, $type, $attrs) = @_;
-      (sub {
+      my ($con, $id, $type, $attrs, $create_cb) = @_;
+      push @$create_cb, sub {
          my $w = shift; # $w is a XML::Writer instance
          $w->emptyTag ('test');
-      }, {
+      };
+      push @$create_cb, {
          node => { name => "test2" } # see also simxml() defined in AnyEvent::XMPP::Util
-      })
+      };
    });
 
-=item send_message_hook => $id, $to, $type, $attrs
+=item send_message_hook => $id, $to, $type, $attrs, \@create_cb
 
 This event lets you add any desired number of additional create callbacks
 to a message stanza that is about to be sent.
@@ -1245,10 +1245,10 @@ to a message stanza that is about to be sent.
 C<$id>, C<$to>, C<$type> and the hashref C<$attrs> are described in the documentation
 for C<send_message> of L<AnyEvent::XMPP::Writer> (C<$attrs> is C<%attrs> there).
 
-To actually append something you need to return something, what you need to return
-is described in the C<send_iq_hook> event above.
+To actually append something you need to push into C<create_cb> as described in
+the C<send_iq_hook> event above.
 
-=item send_presence_hook => $id, $type, $attrs
+=item send_presence_hook => $id, $type, $attrs, \@create_cb
 
 This event lets you add any desired number of additional create callbacks
 to a presence stanza that is about to be sent.
@@ -1256,8 +1256,8 @@ to a presence stanza that is about to be sent.
 C<$id>, C<$type> and the hashref C<$attrs> are described in the documentation
 for C<send_presence> of L<AnyEvent::XMPP::Writer> (C<$attrs> is C<%attrs> there).
 
-To actually append something you need to return something, what you need to return
-is described in the C<send_iq_hook> event above.
+To actually append something you need to push into C<create_cb> as described in
+the C<send_iq_hook> event above.
 
 =back
 

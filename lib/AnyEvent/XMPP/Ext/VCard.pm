@@ -130,7 +130,8 @@ sub hook_on {
    my $rid =
       $con->reg_cb (
          ext_before_send_presence_hook => sub {
-            my ($con) = @_;
+            my ($con, $id, $type, $attrs, $create_cb) = @_;
+
             my $chlds;
 
             my $vc = $self->my_vcard ($con);
@@ -146,14 +147,14 @@ sub hook_on {
                }
             }
 
-            {
+            push @$create_cb, {
                defns => xmpp_ns ('vcard_upd'),
                node => {
                   ns => xmpp_ns ('vcard_upd'),
                   name => 'x',
                   ($chlds ? (childs => [ @$chlds ]) : ()),
               }
-            }
+            };
          },
          ext_after_session_ready => sub {
             my ($con) = @_;
