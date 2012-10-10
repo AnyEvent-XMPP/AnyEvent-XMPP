@@ -9,7 +9,7 @@ use AnyEvent::XMPP::Namespaces qw/xmpp_ns/;
 use AnyEvent::XMPP::Extendable;
 use AnyEvent::XMPP::Error;
 use Object::Event;
-use Digest::SHA1 qw/sha1_hex/;
+use Digest::SHA qw/sha1_hex/;
 use Encode;
 
 our @ISA = qw/AnyEvent::XMPP::SimpleConnection Object::Event AnyEvent::XMPP::Extendable/;

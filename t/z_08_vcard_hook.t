@@ -3,7 +3,7 @@
 use strict;
 no warnings;
 use Test::More;
-use Digest::SHA1 qw/sha1_hex/;
+use Digest::SHA qw/sha1_hex/;
 use AnyEvent::XMPP;
 use AnyEvent::XMPP::TestClient;
 use AnyEvent::XMPP::Namespaces qw/xmpp_ns/;

@@ -93,7 +93,7 @@ For SASL authentication
 
 For stringprep profiles to handle JIDs.
 
-=item L<Digest::SHA1>
+=item L<Digest::SHA>
 
 For component authentication and old-style authentication.
 

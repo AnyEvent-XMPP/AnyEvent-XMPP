@@ -72,7 +72,7 @@ REQUIREMENTS
     Net::LibIDN
         For stringprep profiles to handle JIDs.
 
-    Digest::SHA1
+    Digest::SHA
         For component authentication and old-style authentication.
 
     And yes, all these are essential for XMPP communication. Even though

@@ -19,7 +19,6 @@ WriteMakefile(
         'MIME::Base64'       => 0,
         'Net::LibIDN'        => 0,
         'Authen::SASL'       => 0,
-        'Digest::SHA1'       => 0,
         'Time::Local'        => 0,
         'Object::Event'      => 0.7,
     },

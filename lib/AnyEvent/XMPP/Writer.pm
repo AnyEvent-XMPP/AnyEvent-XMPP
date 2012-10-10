@@ -5,7 +5,7 @@ use Authen::SASL qw/Perl/;
 use MIME::Base64;
 use AnyEvent::XMPP::Namespaces qw/xmpp_ns/;
 use AnyEvent::XMPP::Util qw/simxml filter_xml_chars filter_xml_attr_hash_chars/;
-use Digest::SHA1 qw/sha1_hex/;
+use Digest::SHA qw/sha1_hex/;
 use Encode;
 
 =head1 NAME
