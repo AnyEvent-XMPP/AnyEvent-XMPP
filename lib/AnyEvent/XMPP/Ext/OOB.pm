@@ -116,16 +116,13 @@ sub init {
 
    $self->reg_cb (
       iq_set_request_xml => sub {
-         my ($self, $con, $node) = @_;
+         my ($self, $con, $node, $handled) = @_;
 
-         my $handled = 0;
          for ($node->find_all ([qw/iq_oob query/])) {
             my $url = url_from_node ($_);
             $self->event (oob_recv => $con, $node, $url);
-            $handled = 1;
+            $$handled = 1;
          }
-
-         $handled
       }
    );
 }

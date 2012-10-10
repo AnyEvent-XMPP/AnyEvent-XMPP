@@ -158,13 +158,11 @@ sub init {
 
    $self->{cb_id} = $self->reg_cb (
       iq_get_request_xml => sub {
-         my ($self, $con, $node) = @_;
+         my ($self, $con, $node, $handled) = @_;
 
          if ($self->handle_ping ($con, $node)) {
-            return 1;
+            $$handled = 1;
          }
-
-         ()
       }
    );
 }

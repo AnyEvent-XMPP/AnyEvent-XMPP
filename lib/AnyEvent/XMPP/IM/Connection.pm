@@ -205,15 +205,13 @@ sub get_roster {
 }
 
 sub handle_iq_set {
-   my ($self, $node) = @_;
+   my ($self, $node, $handled) = @_;
 
    if ($node->find_all ([qw/roster query/])) {
       $self->store_roster ($node);
       $self->reply_iq_result ($node);
-      return 1;
+      $$handled = 1;
    }
-
-   return 0;
 }
 
 sub handle_presence {
