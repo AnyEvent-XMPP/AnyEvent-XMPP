@@ -88,6 +88,15 @@ RELEASE NOTES
     top):
 
   Version
+    *   0.53
+
+        Maintenance release. Patches for various small issues, see Changes
+        file.
+
+    *   0.52
+
+        Maintenance release.
+
     *   0.51
 
         Maintenance release. Added a patch which fixes Object::Event
