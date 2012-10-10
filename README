@@ -2,7 +2,7 @@ NAME
     AnyEvent::XMPP - An implementation of the XMPP Protocol
 
 VERSION
-    Version 0.52
+    Version 0.53
 
 SYNOPSIS
        use AnyEvent::XMPP::Connection;
