@@ -119,8 +119,6 @@ This methods removes all handlers. Use it to avoid circular references.
 sub cleanup {
    my ($self) = @_;
 
-   $self->{parser}->release;
-
    for (qw(stanza_cb error_cb stream_cb parser)) {
       delete $self->{$_};
    }
@@ -246,5 +244,10 @@ This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
 =cut
+
+sub DESTROY {
+    my ($self) = @_;
+    $self->{parser}->release;
+}
 
 1; # End of AnyEvent::XMPP
