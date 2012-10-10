@@ -114,6 +114,14 @@ Here are some notes to the last releases (release of this version is at top):
 
 =over 4
 
+=item * 0.53
+
+Maintenance release. Patches for various small issues, see Changes file.
+
+=item * 0.52
+
+Maintenance release.
+
 =item * 0.51
 
 Maintenance release. Added a patch which fixes L<Object::Event> compatibility
