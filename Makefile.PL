@@ -21,6 +21,11 @@ WriteMakefile(
         'Authen::SASL'       => 0,
         'Time::Local'        => 0,
         'Object::Event'      => 0.7,
+        # We depend on the same version that AnyEvent recommends.
+        # While it does make sense for AnyEvent to not require SSL, it is very
+        # very odd to use XMPP without SSL.
+        # This should prevent issues like RT#80148
+        'Net::SSLeay'        => 1.33,
     },
     dist                => {
        COMPRESS => 'gzip -9f',
