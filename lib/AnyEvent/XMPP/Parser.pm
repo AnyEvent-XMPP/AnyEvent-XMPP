@@ -247,7 +247,7 @@ under the same terms as Perl itself.
 
 sub DESTROY {
     my ($self) = @_;
-    $self->{parser}->release;
+    $self->{parser}->release if defined($self->{parser});
 }
 
 1; # End of AnyEvent::XMPP
