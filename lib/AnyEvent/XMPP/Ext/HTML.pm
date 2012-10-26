@@ -1,4 +1,4 @@
-package AnyEvent::XMPP::Ext::Html;
+package AnyEvent::XMPP::Ext::HTML;
 use AnyEvent::XMPP::Namespaces qw/set_xmpp_ns_alias xmpp_ns/;
 use AnyEvent::XMPP::Ext;
 use strict;
@@ -7,13 +7,13 @@ our @ISA = qw/AnyEvent::XMPP::Ext/;
 
 =head1 NAME
 
-AnyEvent::XMPP::Ext::Html - XEP-0071: XHTML-IM (Version 1.4)
+AnyEvent::XMPP::Ext::HTML - XEP-0071: XHTML-IM (Version 1.4)
 
 =head1 SYNOPSIS
 
    my $con = AnyEvent::XMPP::Connection->new (...);
    $con->add_extension (my $disco = AnyEvent::XMPP::Ext::Disco->new);
-   $con->add_extension (AnyEvent::XMPP::Ext::Html->new (disco => $disco));
+   $con->add_extension (AnyEvent::XMPP::Ext::HTML->new (disco => $disco));
 
    $con->send_message (
       body => "This is plain text.",
