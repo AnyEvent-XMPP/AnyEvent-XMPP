@@ -60,7 +60,9 @@ sub init {
       send_message_hook => sub {
          my ($self, $con, $id, $to, $type, $attrs, $create_cb) = @_;
 
+         return unless exists $attrs->{html};
          my $html = $attrs->{html};
+
          push @$create_cb, sub {
             my ($w) = @_;
 
