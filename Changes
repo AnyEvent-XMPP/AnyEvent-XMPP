@@ -1,12 +1,18 @@
 Revision history for AnyEvent::XMPP:
 
+0.54     Wed Dec  5 23:21:03 CET 2012
+         - Add AnyEvent::XMPP::Ext::Receipts for XEP-0184 message receipts
+         - Fix error message "protocol error" when connecting without
+           Net::SSLeay by depending on Net::SSLeay
+         - Bugfix: don’t call ->release on destroyed object
+
 0.53     Wed Oct 10 13:05:08 CEST 2012
          - Fix send_iq_hook, send_message_hook, send_presence_hook
-	 - Enable create_cbs for MUC::Message as well (thanks omega)
-	 - switch from Digest::SHA1 to Digest::SHA which is in core
-	   (thanks jones)
-	 - Fix parser error on auth failure (thanks RHOELZ)
-	 - Bugfix: properly set $handled = 1 in IQ handlers
+         - Enable create_cbs for MUC::Message as well (thanks omega)
+         - switch from Digest::SHA1 to Digest::SHA which is in core
+           (thanks jones)
+         - Fix parser error on auth failure (thanks RHOELZ)
+         - Bugfix: properly set $handled = 1 in IQ handlers
 
 0.52     Fri Aug 14 10:53:23 CEST 2009
          - fixed a problem in xmpp_datetime_as_timestamp.
