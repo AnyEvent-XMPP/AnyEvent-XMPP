@@ -8,11 +8,11 @@ AnyEvent::XMPP - An implementation of the XMPP Protocol
 
 =head1 VERSION
 
-Version 0.53
+Version 0.54
 
 =cut
 
-our $VERSION = '0.53';
+our $VERSION = '0.54';
 
 =head1 SYNOPSIS
 
@@ -113,6 +113,10 @@ Here are some notes to the last releases (release of this version is at top):
 =head2 Version
 
 =over 4
+
+=item * 0.54
+
+Add L<AnyEvent::XMPP::Ext::Receipts>, small bugfixes, see Changes file.
 
 =item * 0.53
 
