@@ -67,6 +67,7 @@ lib/AnyEvent/XMPP/Ext/OOB.pm
 lib/AnyEvent/XMPP/Ext/Ping.pm
 lib/AnyEvent/XMPP/Ext/Version.pm
 lib/AnyEvent/XMPP/Ext/VCard.pm
+lib/AnyEvent/XMPP/Ext/Receipts.pm
 lib/AnyEvent/XMPP/Namespaces.pm
 lib/AnyEvent/XMPP/Util.pm
 lib/AnyEvent/XMPP/Ext.pm
