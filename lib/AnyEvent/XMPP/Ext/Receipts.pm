@@ -208,6 +208,10 @@ sub init {
                     after => $self->{auto_resend},
                     cb => sub {
                         print "(xep0184) timeout for id $id\n" if $self->{debug};
+                        if (!$con->is_connected) {
+                            print "(xep0184) skipping re-send: jabber connection offline\n" if $self->{debug};
+                            return;
+                        }
                         if (!exists($supports_receipts{$to}) || !$supports_receipts{$to}) {
                             # If we don’t know whether the recipient supports
                             # message receipts (and we should by now, since we
