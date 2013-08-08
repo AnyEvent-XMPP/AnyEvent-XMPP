@@ -33,4 +33,14 @@ WriteMakefile(
        PREOP => 'pod2text lib/AnyEvent/XMPP.pm | tee README >$(DISTVNAME)/README; chmod -R u=rwX,go=rX . ;',
     },
     clean               => { FILES => 'AnyEvent-XMPP-*' },
+    META_MERGE          => {
+        'meta-spec' => { version => 2 },
+        resources => {
+            repository => {
+                type => 'git',
+                url  => 'git://github.com/AnyEvent-XMPP/AnyEvent-XMPP.git',
+                web  => 'https://github.com/AnyEvent-XMPP/AnyEvent-XMPP',
+            },
+        },
+    },
 );
