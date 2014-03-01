@@ -1,5 +1,10 @@
 Revision history for AnyEvent::XMPP:
 
+0.55     Sat, 01 Mar 2014 22:41:30 +0100
+         - Receipts: skip re-send if this jabber account is offline
+         - Bugfix: properly clear the disconnected callback
+         - add repository information to META file
+
 0.54     Wed Dec  5 23:21:03 CET 2012
          - Add AnyEvent::XMPP::Ext::Receipts for XEP-0184 message receipts
          - Fix error message "protocol error" when connecting without
