@@ -170,7 +170,7 @@ sub subscribe_node {
     );
 }
 
-=item B<unsubscribe_node>($con, $uri, $bc)>
+=item B<unsubscribe_node($con, $uri, $cb)>
 C<$con> is the connection already established,
 C<$uri> is the name of the node to be created
 C<$cb> is the callback
