@@ -133,6 +133,7 @@ sub init {
                 # supports receipts.
                 $supports_receipts{$node->attr('from')} = 1;
                 $self->stop_event;
+                $con->event (delivery_receipt => $self, $node);
             }
 
             # Figure out if this is a message which requests a receipt, such as
