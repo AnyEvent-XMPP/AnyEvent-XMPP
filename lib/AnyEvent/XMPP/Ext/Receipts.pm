@@ -168,18 +168,6 @@ sub init {
         ext_before_send_message_hook => sub {
             my ($self, $con, $id, $to, $type, $attrs, $create_cb) = @_;
 
-            # We can only handle full jids as per XEP-0184 5.1:
-            # "If the sender knows only the recipient's bare JID, it cannot
-            # cannot determine [...] whether the intended recipient supports
-            # the Message Delivery Receipts protoocl. [...] the sender MUST NOT
-            # depend on receiving an ack message in reply."
-            # If we can’t rely on ack messages, receipts are useless.
-            return if is_bare_jid($to);
-
-            # If we have already figured out that the recipient does not
-            # support message receipts, sending them (and especially waiting
-            # for acknowledge) is pointless.
-            return if exists($supports_receipts{$to}) && !$supports_receipts{$to};
 
             # If this is a message receipt (sent by us), do not add a receipt
             # request, that might lead to an endless loop.
@@ -200,7 +188,8 @@ sub init {
                 $w->endTag;
             };
 
-            if ($self->{auto_resend} > 0) {
+            # Only resend when we know they support delivery receipts
+            if (exists($supports_receipts{$to}) && !$supports_receipts{$to} && ($self->{auto_resend} > 0)) {
                 print "(xep0184) expecting reply within " . $self->{auto_resend} . "s\n" if $self->{debug};
                 # This timer will be deleted when the recipient acknowledges the
                 # message. Otherwise, it re-sends the message.
