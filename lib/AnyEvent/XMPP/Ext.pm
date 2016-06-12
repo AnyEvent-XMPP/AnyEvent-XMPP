@@ -70,6 +70,11 @@ This extension allows to receive and send out of band data URLs
 and provides helper functions to handle jabber:x:oob data.
 See also L<AnyEvent::XMPP::Ext::OOB>.
 
+=item XEP-0071 - XHTML-IM (Version 1.4)
+
+This extension allows the sending of formatted messages using
+XHTML bodies. See also L<AnyEvent::XMPP::Ext::HTML>.
+
 =item XEP-0077 - In-Band Registration (Version 2.2)
 
 This extension lets you register new accounts "in-band".

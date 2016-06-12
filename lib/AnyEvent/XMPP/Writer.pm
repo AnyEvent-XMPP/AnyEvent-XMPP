@@ -568,7 +568,7 @@ sub send_message {
 
    my %fattrs =
       map { $_ => $attrs{$_} }
-         grep { my $k = $_; not grep { $k eq $_ } qw/subject body thread/ }
+         grep { my $k = $_; not grep { $k eq $_ } qw/subject body thread html/ }
             keys %attrs;
 
    if (defined $create_cb) {
